@@ -6,6 +6,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name = "medicos")
 @Data
@@ -32,4 +35,7 @@ public class Medico {
     @Enumerated(EnumType.STRING)
     @Column(name = "especialidade", nullable = false)
     private EspecialidadeEnum especialidade;
+
+    @OneToMany(mappedBy = "medico", cascade = CascadeType.ALL)
+    private List<Consulta> consultas;
 }
