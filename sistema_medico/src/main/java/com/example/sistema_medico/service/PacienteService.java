@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class PacienteService {
@@ -16,4 +18,12 @@ public class PacienteService {
         return pacienteRepository.save(paciente);
     }
 
+    public List<Paciente> listarPacientes(){
+        return pacienteRepository.findAll();
+    }
+
+    public Paciente buscarPacientePorId(@RequestParam Long id){
+        return pacienteRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
+    }
 }
