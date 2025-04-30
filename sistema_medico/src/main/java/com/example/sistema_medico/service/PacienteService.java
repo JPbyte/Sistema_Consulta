@@ -22,7 +22,7 @@ public class PacienteService {
         return pacienteRepository.findAll();
     }
 
-    public Paciente buscarPacientePorId(@RequestParam Long id){
+    public Paciente buscarPacientePorId(Long id){
         return pacienteRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Paciente não encontrado"));
     }
