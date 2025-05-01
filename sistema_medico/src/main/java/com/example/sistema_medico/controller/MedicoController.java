@@ -29,5 +29,20 @@ public class MedicoController {
         List<Medico> medicos = medicoService.listarMedicos();
         return ResponseEntity.ok(medicos);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Medico> buscarMedicoId(@PathVariable Long id){
+        Medico medico = medicoService.buscarMedicoId(id);
+        return ResponseEntity.ok(medico);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Medico> atualizarMedico(@PathVariable Long id, @RequestBody Medico medico){
+        medico.setId(id);
+        Medico medicoAtualizado = medicoService.atualizarMedico(medico);
+        return ResponseEntity.ok(medicoAtualizado);
+    }
+
+
 }
 
