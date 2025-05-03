@@ -30,4 +30,11 @@ public class PacienteController {
 
         return ResponseEntity.ok(pacientesListados);
     }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Paciente> buscarPacienteId(@PathVariable Long id){
+        Paciente paciente = pacienteService.buscarPacientePorId(id);
+
+        return ResponseEntity.ok(paciente);
+    }
 }
