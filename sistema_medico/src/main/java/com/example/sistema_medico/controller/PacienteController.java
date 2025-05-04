@@ -12,7 +12,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("/pacientes")
+@RequestMapping("/paciente")
 public class PacienteController {
 
     private final PacienteService pacienteService;
@@ -36,5 +36,13 @@ public class PacienteController {
         Paciente paciente = pacienteService.buscarPacientePorId(id);
 
         return ResponseEntity.ok(paciente);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Paciente> atualizarPaciente(@PathVariable Long id, @RequestBody Paciente paciente){
+        paciente.setId(id);
+        Paciente pacienteAtualizado = pacienteService.atualizarPaciente(paciente);
+
+        return ResponseEntity.ok(pacienteAtualizado);
     }
 }
