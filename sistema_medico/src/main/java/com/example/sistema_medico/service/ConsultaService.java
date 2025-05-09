@@ -1,5 +1,6 @@
 package com.example.sistema_medico.service;
 
+import com.example.sistema_medico.enums.ConsultaStatus;
 import com.example.sistema_medico.model.Consulta;
 import com.example.sistema_medico.model.Medico;
 import com.example.sistema_medico.model.Paciente;
@@ -43,8 +44,17 @@ public class ConsultaService {
                 .orElseThrow(() -> new RuntimeException("Consulta não encontrada"));
     }
 
-    public void cancelarConsulta(Long id) {
+    public Consulta cancelarConsulta(Long id) {
         Consulta consulta = buscarPorId(id);
-        consultaRepository.delete(consulta);
+
+        consulta.setStatusConsulta(ConsultaStatus.CANCELADA);
+
+        return consultaRepository.save(consulta);
+    }
+
+    public Consulta marcarComoRealizada(Long id) {
+        Consulta consulta = buscarPorId(id);
+        consulta.setStatusConsulta(ConsultaStatus.REALIZADA);
+        return consultaRepository.save(consulta);
     }
 }
